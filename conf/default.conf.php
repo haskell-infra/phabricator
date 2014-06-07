@@ -724,6 +724,26 @@ return array(
   // configure S3 access keys above.
   'storage.s3.bucket'             => null,
 
+  // If you want to store files in Rackspace Cloud files, specify a
+  // username and API key here, as well as a container name and region
+  // below.
+  'rackspace-files.username'      =>  null,
+  'rackspace-files.api-key'       =>  null,
+
+  // Set this to true to enable access logs for all data that the file
+  // objects acrue.
+  'rackspace-files.logging'       => false,
+
+  // Set this to a valid Rackspace Files container to store files
+  // there. You must also configure the access keys above, and the
+  // user must have proper ACLs set.
+  'storage.rackspace.container'   =>  null,
+
+  // Set this to a valid Rackspace region, which will be the region
+  // where your Cloud Files container is located. Valid regions are:
+  // IAD, DFW, ORD, LON, SYD, or HKG.
+  'storage.rackspace.region'      =>  null,
+
   // Phabricator uses a storage engine selector to choose which storage engine
   // to use when writing file data. If you add new storage engines or want to
   // provide very custom rules (e.g., write images to one storage engine and

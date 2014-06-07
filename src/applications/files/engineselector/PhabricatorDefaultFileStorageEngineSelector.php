@@ -35,6 +35,16 @@ final class PhabricatorDefaultFileStorageEngineSelector
       $engines[] = new PhabricatorS3FileStorageEngine();
     }
 
+    $rackspace_key       = 'storage.rackspace.container';
+    $rackspace_container = PhabricatorEnv::getEnvConfig($rackspace_key);
+
+    $rackspace_key    = 'storage.rackspace.region';
+    $rackspace_region = PhabricatorEnv::getEnvConfig($rackspace_key);
+
+    if ($rackspace_container && $rackspace_region) {
+      $engines[] = new PhabricatorRackspaceFileStorageEngine();
+    }
+
     if ($mysql_limit && empty($engines)) {
       // If we return no engines, an exception will be thrown but it will be
       // a little vague ("No valid storage engines"). Since this is a default

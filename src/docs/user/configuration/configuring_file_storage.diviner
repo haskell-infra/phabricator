@@ -70,6 +70,21 @@ To enable file storage in S3, set these key:
   - ##amazon-s3.secret-key## Your AWS secret key.
   - ##storage.s3.bucket## S3 bucket name where files should be stored.
 
+== Rackspace Cloud Files ==
+
+  - **Pros**: Scales well.
+  - **Cons**: More expensive than other approaches.
+
+To enable file storage using Rackspace, set these keys:
+
+  - ##rackspace-files.username## Your Rackspace username.
+  - ##rackspace-files.api-key## Your Rackspace API key
+  - ##rackspace-files.logging## Optionally enable logging for file accesses.
+  - ##storage.rackspace.container## The Cloud Files container where files
+    should be stored.
+  - ##storage.rackspace.region## The region in which the cloud files
+    container exists.
+
 == Custom Engine ==
 
 For details about writing a custom storage engine, see @{article:File Storage

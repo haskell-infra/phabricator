@@ -134,6 +134,29 @@ final class PhabricatorFilesConfigOptions
             "Set this to a valid Amazon S3 bucket to store files there. You ".
             "must also configure S3 access keys in the 'Amazon Web Services' ".
             "group.")),
+     $this->newOption('storage.rackspace.container', 'string', null)
+        ->setSummary(pht('Rackspace Files container.'))
+        ->setDescription(
+          pht(
+            "Set this to a valid Rackspace Files container to store files ".
+            "there. You must also configure the Rackspace access keys in the ".
+            "'Rackspace Cloud' group, and the region to store the files in.")),
+     $this->newOption('storage.rackspace.region', 'enum', null)
+        ->setEnumOptions(
+          array(
+            'IAD' => 'Northern Virginia (IAD)',
+            'ORD' => 'Chicago (ORD)',
+            'SYD' => 'Sydney (SYD)',
+            'DFW' => 'Dallas (DFW)',
+            'LON' => 'London (LON)',
+            'HKG' => 'Hong Kong (HKG)',
+          ))
+        ->setSummary(pht('Rackspace Files region.'))
+        ->setDescription(
+          pht(
+            "Set this to a valid Rackspace region, which specifies which ".
+            "region your Cloud Files will be stored in. The default is ".
+            "`null`.")),
      $this->newOption(
        'storage.engine-selector',
        'class',
