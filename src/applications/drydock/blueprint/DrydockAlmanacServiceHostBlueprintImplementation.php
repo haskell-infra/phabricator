@@ -113,7 +113,21 @@ final class DrydockAlmanacServiceHostBlueprintImplementation
     DrydockBlueprint $blueprint,
     DrydockResource $resource,
     DrydockLease $lease) {
-    return true;
+
+    $viewer = PhabricatorUser::getOmnipotentUser();
+
+    $leases = id(new DrydockLeaseQuery())
+      ->setViewer($viewer)
+      ->withResourcePHIDs(array($resource->getPHID()))
+      ->withStatuses(
+        array(
+          DrydockLeaseStatus::STATUS_PENDING,
+          DrydockLeaseStatus::STATUS_ACQUIRED,
+          DrydockLeaseStatus::STATUS_ACTIVE,
+        ))
+      ->setLimit(1)
+      ->execute();
+    return empty($leases);
   }
 
   public function acquireLease(
